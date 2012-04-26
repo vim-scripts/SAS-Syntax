@@ -76,7 +76,7 @@ syn region sasSection start="/\* SECTION" end="\*/" contains=sasTodo
 
 " Base SAS Procs - version 8.1
 syn keyword sasStep RUN DATA
-syn keyword sasCondition DO ELSE END IF THEN UNTIL WHILE 
+syn keyword sasCondition DO ELSE END IF THEN TO UNTIL WHILE 
 syn keyword sasOperator AND OR IN NOT EQ NE GT LT GE LE
 
 syn match sasStatementKwd "[^;]" contained

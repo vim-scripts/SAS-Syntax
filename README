@@ -1,3 +1,15 @@
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3522
 
-Originally based on the script written by James Kidd years ago. The approach for highlighting SAS statement keywords has been completely rewritten (hopefully more accurate and content sensitive). New statement keywords being introduced in SAS 9.1/9.2/9.3, such as those of ODS statement, PROC SGPLOT and hash object, have been supported. Also added highlighting for format tags and user defined macro functions.
+This syntax script was based on the script originally written by James Kidd years ago. The mechanism for matching SAS keywords has been completely rewritten. The new approach is supposed to be more sophisticated and content sensitive than the old one. 
+
+New improvements of the latest syntax script:
+
+1. Keywords newly introduced in SAS 9.1/9.2/9.3 have been added, including ODS statements, hash object, Proc SGPLOT and Proc SGPANEL.
+2. All keywords (according to SAS official documents) in base SAS (up to 9.3) have been supported.
+3. Highlights for format tags, user defined macro functions, and macro comments have been supported.
+
+I omitted syntax supports for SAS log and list files in this script. Syntax supports for these files should be kept in separate scripts.  
+
+Please let me know if there is any bugs in the script.
+
+PS: Don't forget to check out my SAS indent script here: http://vim.sourceforge.net/scripts/script.php?script_id=4034
