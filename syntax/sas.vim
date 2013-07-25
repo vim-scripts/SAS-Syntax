@@ -1,9 +1,15 @@
 " Vim syntax file
-" Language:  SAS
-" Maintainer:  Zhenhuan Hu <wildkeny@gmail.com>
+" Language: SAS
+" Maintainer: Zhenhuan Hu <wildkeny@gmail.com>
+" Version: 1.2.3
 " Last Change:
 "
-"    28 Mar 2012 by Zhenhuan Hu <wildkeny@gmail.com>
+"    24 Jul 2013 by Zhenhuan Hu
+"
+"    Minor cosmetic modifications for hash objects
+"    Minor bug fixes for statment syntax
+"
+"    28 Mar 2012 by Zhenhuan Hu
 "    
 "    Added syntax for macro comment
 "
@@ -93,9 +99,9 @@ syn match sasStatement "\(^\|;\)\s*\(TITLE\d\=\|UPDATE\|WAITFOR\|WHERE\|WINDOW\|
 syn match sasStatement "\(^\|;\)\s*DECLARE\( \s*HASH\| \s*HITER\)\>"  contains=sasStatementKwd 
 
 " Base SAS procedure statements, version 9.3 (Zhenhuan Hu)
-syn match sasStatement "\(^\|;\)\s*\(PARTIAL\|WITH\)" contains=sasStatementKwd " Proc CORR
-syn match sasStatement "\(^\|;\)\s*\(BLOCK\|HBAR\|PIE\|STAR\|VBAR\)" contains=sasStatementKwd " Proc CHART
-syn match sasStatement "\(^\|;\)\s*\(EXCLUDE\|INVALUE\|PICTURE\|SELECT\|VALUE\)" contains=sasStatementKwd " Proc FORMAT
+syn match sasStatement "\(^\|;\)\s*\(PARTIAL\|WITH\)\>" contains=sasStatementKwd " Proc CORR
+syn match sasStatement "\(^\|;\)\s*\(BLOCK\|HBAR\|PIE\|STAR\|VBAR\)\>" contains=sasStatementKwd " Proc CHART
+syn match sasStatement "\(^\|;\)\s*\(EXCLUDE\|INVALUE\|PICTURE\|SELECT\|VALUE\)\>" contains=sasStatementKwd " Proc FORMAT
 syn match sasStatement "\(^\|;\)\s*\(EXACT\|TABLES\=\|TEST\|WEIGHT\)\>" contains=sasStatementKwd " Proc FREQ
 syn match sasStatement "\(^\|;\)\s*\(CLASS\|FREQ\|OUTPUT\|TYPES\|VALUE\|WAYS\)\>" contains=sasStatementKwd " Proc MEANS
 syn match sasStatement "\(^\|;\)\s*\(BY\|ID\|PAGEBY\|SUM\|SUMBY\|VAR\)\>" contains=sasStatementKwd " Proc PRINT
@@ -109,17 +115,20 @@ syn match sasStatement "\(^\|;\)\s*\(COPY\|IDLABEL\)\>" contains=sasStatementKwd
 syn match sasStatement "\(^\|;\)\s*\(CDFPLOT\|HISTOGRAM\|INSET\|PPPLOT\|PROBPLOT\|QQPLOT\)\>" contains=sasStatementKwd " Proc UNIVARIATE
 
 " SAS/GRAPH statements, version 9.3 (Zhenhuan Hu)
-syn match sasStatement "\(^\|;\)\s*\(AXIS\d\{0,2}\|GOPTIONS\|LEGEND\d\{0,2}\|NOTE\|PATTERN\d\{0,3}\|SYMBOL\d\{0,3}\)" contains=sasStatementKwd 
+syn match sasStatement "\(^\|;\)\s*\(AXIS\d\{0,2}\|GOPTIONS\|LEGEND\d\{0,2}\|NOTE\|PATTERN\d\{0,3}\|SYMBOL\d\{0,3}\)\>" contains=sasStatementKwd 
 syn match sasStatement "\(^\|;\)\s*\(HBAR3D\|PIE3D\|VBAR3D\)\>" contains=sasStatementKwd " Proc GCHART
 syn match sasStatement "\(^\|;\)\s*\(BUBBLE2\|PLOT2\=\)\>" contains=sasStatementKwd " Proc GPLOT
 
+" SAS/STAT statments, version 9.3 (Zhenhuan Hu)
+syn match sasStatement "\(^\|;\)\s*\(BASELINE\|MODEL\)\>" contains=sasStatementKwd " Proc PHREG
+
 " Proc SQL keywords (Zhenhuan Hu)
-syn keyword sasProcSQLKwd ADD AND ALTER AS CASCADE CHECK CREATE contained
+syn keyword sasProcSQLKwd ADD AND ALTER AS BY CASCADE CHECK CREATE contained
 syn keyword sasProcSQLKwd DELETE DESCRIBE DISTINCT DROP FOREIGN contained
 syn keyword sasProcSQLKwd FROM GROUP HAVING INDEX INSERT INTO IN contained
 syn keyword sasProcSQLKwd JOIN KEY LEFT LIKE MESSAGE MODIFY MSGTYPE NOT contained
-syn keyword sasProcSQLKwd RESET RESTRICT RIGHT SELECT SET TABLE TABLES contained
-syn keyword sasProcSQLKwd QUIT UNIQUE UPDATE VALIDATE VIEW WHERE contained
+syn keyword sasProcSQLKwd ON ORDER QUIT RESET RESTRICT RIGHT SELECT SET contained
+syn keyword sasProcSQLKwd TABLE TABLES UNIQUE UPDATE VALIDATE VIEW WHERE contained
 
 " ODS keywords (Zhenhuan Hu)
 syn keyword sasODSKwd ODS CLOSE CHTML CSVALL contained
@@ -128,6 +137,7 @@ syn keyword sasODSKwd GRAPHICS HTML HTMLCSS HTML3 IMODE LISTING contained
 syn keyword sasODSKwd MAKEUP OFF ON OUTPUT PACKAGES PATH PCL PDF PHTML contained
 syn keyword sasODSKwd PRINTER PROCLABEL PROCTITLE PS RESULTWS RTF contained
 syn keyword sasODSKwd SELECT SHOW TAGSET TEXT TRACE USEGOPT VERIFY WML contained
+syn match sasStatement "\(^\|;\)\s*\(STYLE\)\>" contains=sasStatementKwd " Proc TEMPLATE
 
 syn region sasODS start="\(^\|;\)\s*\ODS\>" end=";"me=e-1 contains=sasODSKwd, sasString, sasNumber, sasComment, sasMacro, sasMacroFunction, sasMacroVar
 
@@ -160,7 +170,7 @@ syn match sasMacro "%\(PUT\|RETURN\|SYMDEL\|SYSCALL\|SYSEXEC\|SYSLPUT\|SYSRPUT\|
 syn match sasMacroFunction "%\w\+("he=e-1
 
 " SAS functions and call routines (Zhenhuan Hu)
-syn match sasFunction "\<\(CALL \s*\|\)\w\+("he=e-1
+syn match sasFunction "\<\(CALL\s\+\|\w\+\.\|\)\w\+("he=e-1
 
 " Always contained in a comment (Bob Heckel)
 syn keyword sasTodo TODO TBD FIXME contained
