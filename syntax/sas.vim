@@ -4,6 +4,10 @@
 " Version: 1.2.3
 " Last Change:
 "
+"    19 Jun 2014 by Zhenhuan Hu
+"
+"    Improved macro comment syntax
+"
 "    24 Jul 2013 by Zhenhuan Hu
 "
 "    Minor cosmetic modifications for hash objects
@@ -71,12 +75,14 @@ syn match sasNumber "-\=\<\d*\.\=[0-9_]\>"
 " Block comment
 syn region sasComment start="/\*" end="\*/" contains=sasTodo
 " Previous code for comments was written by Bob Heckel
-" Comments with * starting after a semicolon (Paulo Tanimoto)
-syn region sasComment start=";\s*\*"ms=s+1 end=";"me=e-1 contains=sasTodo
 " Several comments can be put in the same line (Zhenhuan Hu)
 syn region sasComment start="^\s*\*" skip=";\s*\*" end=";"me=e-1 contains=sasTodo
+" Comments with * starting after a semicolon (Paulo Tanimoto)
+syn region sasComment start=";\s*\*"ms=s+1 end=";"me=e-1 contains=sasTodo
 " Macro comments (Zhenhuan Hu)
-syn region sasComment start="^\s*%\*" end=";"me=e-1 contains=sasTodo
+syn region sasComment start="^\s*%\*" skip=";\s*%\*" end=";"me=e-1 contains=sasTodo
+" Macro comments with * starting after a semicolon (Zhenhuan Hu)
+syn region sasComment start=";\s*%\*"ms=s+1 end=";"me=e-1 contains=sasTodo
 " Self-defined section mark
 syn region sasSection start="/\* SECTION" end="\*/" contains=sasTodo
 
@@ -193,24 +199,24 @@ if version >= 508 || !exists("did_sas_syntax_inits")
   endif
 
   " hi Procedure term=bold ctermfg=Green gui=bold guifg=Orange
-  hi Section gui=none guifg=grey20 guibg=White
+  " hi Section gui=none guifg=grey20 guibg=White
 
   HiLink sasComment Comment
   HiLink sasCondition Statement
-  HiLink sasOperator Statement
+  HiLink sasOperator Statement 
   HiLink sasStep Statement
   HiLink sasStatementKwd Statement
   HiLink sasProcSQLKwd Statement
   HiLink sasODSKwd Statement
   HiLink sasFunction Function
-  HiLink sasMacro Function
-  HiLink sasMacroFunction Function
+  HiLink sasMacro Macro
+  HiLink sasMacroFunction Macro
   HiLink sasMacroVar Macro
   HiLink sasNumber Number
   HiLink sasFormatValue Tag
   HiLink sasString String
   HiLink sasProcName Keyword 
-  HiLink sasSection Section
+  HiLink sasSection Underlined
   HiLink sasTodo Todo
   HiLink sasCards Special
   HiLink sasInternalVariable Define
