@@ -1,8 +1,12 @@
 " Vim syntax file
 " Language: SAS
 " Maintainer: Zhenhuan Hu <wildkeny@gmail.com>
-" Version: 1.2.3
+" Version: 1.2.5
 " Last Change:
+"
+"    30 Mar 2015 by Zhenhuan Hu
+"
+"    Additional keywords
 "
 "    19 Jun 2014 by Zhenhuan Hu
 "
@@ -88,39 +92,51 @@ syn region sasSection start="/\* SECTION" end="\*/" contains=sasTodo
 
 " Base SAS Procs - version 8.1
 syn keyword sasStep RUN DATA
-syn keyword sasCondition DO ELSE END IF THEN TO UNTIL WHILE 
+syn keyword sasCondition DO ELSE END IF THEN TO OVER UNTIL WHILE 
 syn keyword sasOperator AND OR IN NOT EQ NE GT LT GE LE
 
 syn match sasStatementKwd "[^;]" contained
 
-" Data step statments, version 9.3 (Zhenhuan Hu)
+" Data step statments, 9.4 (Zhenhuan Hu)
 syn match sasStatement "\(^\|;\)\s*\(ABORT\|ARRAY\|ATTRIB\|BY\|CARDS\|CARDS4\|CATNAME\)\>" contains=sasStatementKwd
-syn match sasStatement "\(^\|;\)\s*\(CONTINUE\|DATALINES\|DATALINES4\|DELETE\|DESCRIBE\|DISPLAY\|DM\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(DROP\|ENDSAS\|ERROR\|EXECUTE\|FILE\|FILENAME\|FOOTNOTE\d\=\|FORMAT\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(GOTO\|INFILE\|INFORMAT\|INPUT\|KEEP\|LABEL\|LEAVE\|LENGTH\|LIBNAME\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(LINK\|LIST\|LOCK\|LOSTCARD\|MERGE\|MISSING\|MODIFY\|OPTIONS\|OUTPUT\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(PAGE\|PUT\|PUTLOG\|REDIRECT\|REMOVE\|RENAME\|REPLACE\|RESETLINE\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(RETAIN\|RETURN\|SASFILE\|SELECT\|SET\|SKIP\|STARTSAS\|STOP\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(TITLE\d\=\|UPDATE\|WAITFOR\|WHERE\|WINDOW\|X\)\>"  contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*DECLARE\( \s*HASH\| \s*HITER\)\>"  contains=sasStatementKwd 
+syn match sasStatement "\(^\|;\)\s*\(CONTINUE\|DATALINES\|DATALINES4\|DELETE\|DESCRIBE\|DISPLAY\|DM\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(DROP\|ENDSAS\|ERROR\|EXECUTE\|FILE\|FILENAME\|FOOTNOTE\d\=\|FORMAT\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(GOTO\|INFILE\|INFORMAT\|INPUT\|KEEP\|LABEL\|LEAVE\|LENGTH\|LIBNAME\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(LINK\|LIST\|LOCK\|LOSTCARD\|MERGE\|MISSING\|MODIFY\|OPTIONS\|OTHERWISE\|OUTPUT\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(PAGE\|PUT\|PUTLOG\|REDIRECT\|REMOVE\|RENAME\|REPLACE\|RESETLINE\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(RETAIN\|RETURN\|SASFILE\|SELECT\|SET\|SKIP\|STARTSAS\|STOP\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*\(TITLE\d\=\|UPDATE\|WAITFOR\|WHEN\|WHERE\|WINDOW\|X\)\>" contains=sasStatementKwd
+syn match sasStatement "\(^\|;\)\s*DECLARE\s\+\(HASH\|HITER\)\>" contains=sasStatementKwd
 
-" Base SAS procedure statements, version 9.3 (Zhenhuan Hu)
-syn match sasStatement "\(^\|;\)\s*\(PARTIAL\|WITH\)\>" contains=sasStatementKwd " Proc CORR
+" Base SAS 9.4, procedures (Zhenhuan Hu)
+syn match sasStatement "\(^\|;\)\s*\(REPAIR\)\>" contains=sasStatementKwd " Proc AUTHLIB
+syn match sasStatement "\(^\|;\)\s*\(CALID\|DUR\|FIN\|HOLIDUR\|HOLIFIN\|HOLIVAR\|OUTDUR\|OUTFIN\|OUTSTART\|START\)\>" contains=sasStatementKwd " Proc CALENDAR
+syn match sasStatement "\(^\|;\)\s*\(CHANGE\|CONTENTS\|EXCHANGE\|SAVE\)\>" contains=sasStatementKwd " Proc CATALOG
 syn match sasStatement "\(^\|;\)\s*\(BLOCK\|HBAR\|PIE\|STAR\|VBAR\)\>" contains=sasStatementKwd " Proc CHART
+syn match sasStatement "\(^\|;\)\s*\(TRANTAB\)\>" contains=sasStatementKwd " Proc CPORT
+syn match sasStatement "\(^\|;\)\s*\(DBENCODING\|DELIMITER\|FMTLIB\|META\|PUTNAMES\)\>" contains=sasStatementKwd " Proc EXPORT
+syn match sasStatement "\(^\|;\)\s*\(DELETEFUNC\|DELETESUBR\|FUNCTION\|LISTFUNC\|LISTSUBR\|OUTARGS\|STRUCT\|SUBROUTINE\)\>" contains=sasStatementKwd " Proc FCMP
+syn match sasStatement "\(^\|;\)\s*\(FONTFILE\|FONTPATH\|TRUETYPE\|TYPE1\|OPENTYPE\)\>" contains=sasStatementKwd " Proc FONTREG
 syn match sasStatement "\(^\|;\)\s*\(EXCLUDE\|INVALUE\|PICTURE\|SELECT\|VALUE\)\>" contains=sasStatementKwd " Proc FORMAT
-syn match sasStatement "\(^\|;\)\s*\(EXACT\|TABLES\=\|TEST\|WEIGHT\)\>" contains=sasStatementKwd " Proc FREQ
-syn match sasStatement "\(^\|;\)\s*\(CLASS\|FREQ\|OUTPUT\|TYPES\|VALUE\|WAYS\)\>" contains=sasStatementKwd " Proc MEANS
+syn match sasStatement "\(^\|;\)\s*\(CLASS\|FREQ\|OUTPUT\|TYPES\|WAYS\)\>" contains=sasStatementKwd " Proc MEANS
 syn match sasStatement "\(^\|;\)\s*\(BY\|ID\|PAGEBY\|SUM\|SUMBY\|VAR\)\>" contains=sasStatementKwd " Proc PRINT
 syn match sasStatement "\(^\|;\)\s*\(RANKS\)\>" contains=sasStatementKwd " Proc RANKS
-syn match sasStatement "\(^\|;\)\s*\(BREAK\|COLUMN\|DEFINE\|RBREAK\)\>" contains=sasStatementKwd " Proc REPORT
-syn match sasStatement "\(^\|;\)\s*\(BAND\|BUBBLE\|DENSITY\|DOT\|ELLIPSE\|HBARPARM\|HBOX\|HIGHLOW\|HLINE\)\>" contains=sasStatementKwd " Proc SGPLOT
-syn match sasStatement "\(^\|;\)\s*\(INSET\|KEYLEGEND\|LINEPARM\|LOESS\|NEEDLE\|PBSPLINE\|REFLINE\|REG\|SCATTER\)\>" contains=sasStatementKwd 
-syn match sasStatement "\(^\|;\)\s*\(SERIES\|STEP\|VBARPARM\|VBOX\|VECTOR\|VLINE\|WATERFALL\|XAXIS\|X2AXIS\|YAXIS\|Y2AXIS\)\>" contains=sasStatementKwd 
+syn match sasStatement "\(^\|;\)\s*\(BREAK\|COLUMN\|DEFINE\|COMPUTE\|ENDCOMP\|RBREAK\)\>" contains=sasStatementKwd " Proc REPORT
 syn match sasStatement "\(^\|;\)\s*\(CLASSLEV\|KEYLABEL\)\>" contains=sasStatementKwd " Proc TABULATE
 syn match sasStatement "\(^\|;\)\s*\(COPY\|IDLABEL\)\>" contains=sasStatementKwd " Proc TRANSPOSE
+" Base SAS 9.4, statistical procedures
+syn match sasStatement "\(^\|;\)\s*\(PARTIAL\|WEIGHT\|WITH\)\>" contains=sasStatementKwd " Proc CORR
+syn match sasStatement "\(^\|;\)\s*\(EXACT\|TABLES\=\|TEST\)\>" contains=sasStatementKwd " Proc FREQ
 syn match sasStatement "\(^\|;\)\s*\(CDFPLOT\|HISTOGRAM\|INSET\|PPPLOT\|PROBPLOT\|QQPLOT\)\>" contains=sasStatementKwd " Proc UNIVARIATE
+" SAS/ODS, 9.4
+syn match sasStatement "\(^\|;\)\s*\(BAND\|BUBBLE\|DENSITY\|DOT\|ELLIPSE\|HBARPARM\|HBOX\|HIGHLOW\|HLINE\)\>" contains=sasStatementKwd " Proc SGPLOT
+syn match sasStatement "\(^\|;\)\s*\(PANELBY\|COLAXIS\|ROWAXIS\)\>" contains=sasStatementKwd " Proc SGPANEL
+syn match sasStatement "\(^\|;\)\s*\(COMPARE\|MATRIX\|PLOT\)\>" contains=sasStatementKwd " Proc SGSCATTER
+syn match sasStatement "\(^\|;\)\s*\(DYNAMIC\)\>" contains=sasStatementKwd " Proc SGDESIGN, SGRENDER
+syn match sasStatement "\(^\|;\)\s*\(INSET\|KEYLEGEND\|LINEPARM\|LOESS\|NEEDLE\|PBSPLINE\|REFLINE\|REG\|SCATTER\)\>" contains=sasStatementKwd 
+syn match sasStatement "\(^\|;\)\s*\(SERIES\|STEP\|VBARPARM\|VBOX\|VECTOR\|VLINE\|WATERFALL\|XAXIS\|X2AXIS\|YAXIS\|Y2AXIS\)\>" contains=sasStatementKwd 
 
-" SAS/GRAPH statements, version 9.3 (Zhenhuan Hu)
+" SAS/GRAPH, version 9.3 (Zhenhuan Hu)
 syn match sasStatement "\(^\|;\)\s*\(AXIS\d\{0,2}\|GOPTIONS\|LEGEND\d\{0,2}\|NOTE\|PATTERN\d\{0,3}\|SYMBOL\d\{0,3}\)\>" contains=sasStatementKwd 
 syn match sasStatement "\(^\|;\)\s*\(HBAR3D\|PIE3D\|VBAR3D\)\>" contains=sasStatementKwd " Proc GCHART
 syn match sasStatement "\(^\|;\)\s*\(BUBBLE2\|PLOT2\=\)\>" contains=sasStatementKwd " Proc GPLOT
@@ -131,9 +147,9 @@ syn match sasStatement "\(^\|;\)\s*\(BASELINE\|MODEL\)\>" contains=sasStatementK
 " Proc SQL keywords (Zhenhuan Hu)
 syn keyword sasProcSQLKwd ADD AND ALTER AS BY CASCADE CHECK CREATE contained
 syn keyword sasProcSQLKwd DELETE DESCRIBE DISTINCT DROP FOREIGN contained
-syn keyword sasProcSQLKwd FROM GROUP HAVING INDEX INSERT INTO IN contained
+syn keyword sasProcSQLKwd FROM FULL GROUP HAVING INDEX INSERT INTO IN INNER contained
 syn keyword sasProcSQLKwd JOIN KEY LEFT LIKE MESSAGE MODIFY MSGTYPE NOT contained
-syn keyword sasProcSQLKwd ON ORDER QUIT RESET RESTRICT RIGHT SELECT SET contained
+syn keyword sasProcSQLKwd ON ORDER OUTER QUIT RESET RESTRICT RIGHT SELECT SET contained
 syn keyword sasProcSQLKwd TABLE TABLES UNIQUE UPDATE VALIDATE VIEW WHERE contained
 
 " ODS keywords (Zhenhuan Hu)
@@ -149,7 +165,7 @@ syn region sasODS start="\(^\|;\)\s*\ODS\>" end=";"me=e-1 contains=sasODSKwd, sa
 
 " SAS formats
 syn match sasFormatValue "\w\+\." contained
-syn region sasODS start="\(^\|;\)\s*\(FORMAT\|INPUT\)\>" end=";"me=e-1 contains=sasFormatValue, sasStatement, sasString, sasNumber, sasStep, sasComment, sasMacro, sasMacroFunction, sasMacroVar
+syn region sasFormat start="\(^\|;\)\s*\(FORMAT\|INPUT\)\>" end=";"me=e-1 contains=sasFormatValue, sasStatement, sasString, sasNumber, sasStep, sasComment, sasMacro, sasMacroFunction, sasMacroVar
 
 " No need to specify PROC list if use this line (Bob Heckel).
 " Match options contained in the PROC statement (Zhenhuan Hu);
@@ -183,8 +199,7 @@ syn keyword sasTodo TODO TBD FIXME contained
 
 " These don't fit anywhere else (Bob Heckel).
 " Added others that were missing (Zhenhuan Hu).
-syn match sasInternalVariable "\<\(_ALL_\|_AUTOMATIC_\|_CHARACTER_\|_INFILE_\|_N_\|_NAME_\)\>"
-syn match sasInternalVariable "\<\(_NULL_\|_NUMERIC_\|_USER_\|_WEBOUT_\)\>"
+syn match sasInternalVariable "\<\(_ALL_\|_AUTOMATIC_\|_CHARACTER_\|_INFILE_\|_N_\|_NAME_\|_NULL_\|_NUMERIC_\|_USER_\|_WEBOUT_\)\>"
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
